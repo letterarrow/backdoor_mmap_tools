@@ -34,3 +34,7 @@
 [submodule "libpingpong_exploit"]
 	path = libpingpong_exploit
 	url = https://github.com/android-rooting-tools/libpingpong_exploit
+[submodule "libiovy_exploit"]
+	path = libiovy_exploit
+	url = git@github.com:letterarrow/iovyroot.git
+	branch = libiovy_exploit
