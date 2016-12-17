@@ -310,6 +310,31 @@ static unsigned long int unlock_module_patch_data_shl21_01_01_02[] = {
 };
 
 
+#define security_ops_shl22_01_00_08     0xc082d038
+#define n_security_ops_shl22_01_00_08   173
+
+static lsm_fix_t lsm_fixes_shl22_01_00_08[] = {
+  { 0xc02623b8, 0xc025fb68 },
+  { 0xc02623c0, 0xc025fc00},
+  { 0xc0262cf0, 0xc025ffc8},
+  { 0xc0262b18, 0xc0261fc8},
+  { 0xc02625c8, 0xc0261fd0},
+  { 0xc0262984, 0xc0261fd8},
+  { 0xc0262a04, 0xc02620c0},
+  { 0xc02623c8, 0xc02620c8},
+  { 0xc0262534, 0xc02620e0},
+  { 0xc0262904, 0xc02620f0},
+  { 0xc0262634, 0xc0262144},
+  { 0xc026249c, 0xc0260510},
+  { 0xc0262d98, 0xc02622d4},
+};
+
+#define unlock_module_patch_address_shl22_01_00_08  0xc00bc354
+
+static unsigned long int unlock_module_patch_data_shl22_01_00_08[] = {
+  0xe3a00000,	// BL  <memcmp>   ->  MOV  R0 #0
+};
+
 bool
 unlock_lsm(void)
 {
@@ -772,6 +797,17 @@ main(int argc, char **argv)
     unlock_module_patch_address = unlock_module_patch_address_shl21_01_01_02;
     unlock_module_patch_data = unlock_module_patch_data_shl21_01_01_02;
     unlock_module_patch_data_size = ARRAY_SIZE(unlock_module_patch_data_shl21_01_01_02);
+    break;
+
+  case DEVICE_SHL22_01_01_08:
+    security_ops = security_ops_shl22_01_00_08;
+    n_security_ops = n_security_ops_shl22_01_00_08;
+    lsm_fixes = lsm_fixes_shl22_01_00_08;
+    n_lsm_fixes = ARRAY_SIZE(lsm_fixes_shl22_01_00_08);
+
+    unlock_module_patch_address = unlock_module_patch_address_shl22_01_00_08;
+    unlock_module_patch_data = unlock_module_patch_data_shl22_01_00_08;
+    unlock_module_patch_data_size = ARRAY_SIZE(unlock_module_patch_data_shl22_01_00_08);
     break;
 
   default:
