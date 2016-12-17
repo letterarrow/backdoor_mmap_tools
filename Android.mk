@@ -91,6 +91,7 @@ LOCAL_STATIC_LIBRARIES += libpingpong_exploit
 LOCAL_STATIC_LIBRARIES += libexploit_utils
 LOCAL_STATIC_LIBRARIES += libz_static
 LOCAL_STATIC_LIBRARIES += libcutils libc
+LOCAL_STATIC_LIBRARIES += libiovy_exploit
 LOCAL_LDFLAGS += -static
 
 TOP_SRCDIR := $(abspath $(LOCAL_PATH))
